@@ -1,0 +1,45 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:context = "http://www.springframework.org/schema/context"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+   <context:annotation-config/>
+
+<!-- Data DependancyInjuction Using Constructor  
+<bean id="bike" class="com.ProShark.Bike">
+<constructor-arg index="0" name="color" value="red"></constructor-arg>
+<constructor-arg index="1" name="engine"><ref bean="engine"/></constructor-arg>
+</bean>
+-->
+
+<!-- Data DependancyInjuction Using Setter/Getter  -->
+
+<bean id="bike" class="com.ProShark.Bike">
+<property name="engien"><ref bean="engine"/></property>
+<property name="color" value="red"></property>
+</bean>
+
+
+
+<bean id="showroom" class="com.ProShark.ShowRoom" autowire="byType">
+<property name="bikelistBikes">
+<list><ref bean="bike"/>
+<ref bean="bike"/>
+<ref bean="bike"/>
+</list>
+
+
+</property>
+</bean>
+
+
+
+<bean id="engine" class="com.ProShark.Engine" />
+</beans>
+
+
